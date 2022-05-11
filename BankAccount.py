@@ -15,7 +15,7 @@ class BankAccount:
         if isinstance(value,int) and value>=0:
             self._account_number = value
         else:
-            raise ValueError("O valor deve ser um inteiro positivo.")
+            raise ValueError("The value must be a positive integer.")
 
     @property
     def first_name(self):
@@ -25,7 +25,7 @@ class BankAccount:
         if isinstance(name,str) and not any(map(str.isdigit, name)):
             self._first_name = name
         else:
-            raise ValueError("O nome deve inteiramente não numérico.")
+            raise ValueError("Error: only not numeric strings are allowed.")
     
     @property
     def last_name(self):
@@ -35,7 +35,7 @@ class BankAccount:
         if isinstance(last_name,str) and not any(map(str.isdigit, last_name)):
             self._last_name = last_name
         else:
-            raise ValueError("O sobrenome deve inteiramente não numérico.")
+            raise ValueError("Error: only not numeric strings are allowed.")
     
     def complete_name(self):
         return self.first_name + ' ' + self.last_name
@@ -48,7 +48,7 @@ class BankAccount:
         if(isinstance(value, (int,float)) and value>=0):
             self._balance = value
         else:
-            raise ValueError("O valor deve ser um inteiro positivo.")
+            raise ValueError("Error: the value must be a positive integer.")
     
     def deposit(self, value:float):
         if(isinstance(value, (int,float)) and value>=0):
@@ -56,14 +56,14 @@ class BankAccount:
             self.set_control_number()
             return self.gen_confirmation_number('D')
         else:
-            raise ValueError("O valor deve ser um inteiro positivo.")
+            raise ValueError("Error: the value must be a positive integer.")
     
     def withdrawals(self, value:float):
         if(isinstance(value, (int,float)) and value>=0 and value-self.balance>=0):
             self.balance-=value
             return self.gen_confirmation_number('W')
         else:
-            return "O valor a ser sacado é muito elevado."
+            return "Error: the amount withdrawn is too high."
 
     @classmethod
     def get_tz(cls):
@@ -74,7 +74,7 @@ class BankAccount:
     @classmethod
     def set_tz(cls, offset, name):
         '''
-        Método de classe 'set_tz'.
+        Class method 'set_tz'.
         '''
         cls.tz = datetime.timezone(datetime.timedelta(hours=offset), name)
     
@@ -86,7 +86,7 @@ class BankAccount:
         if(isinstance(value, (int,float)) and value>=0 and value<=1):
             cls._interest_rate = value
         else:
-            raise ValueError("O valor deve positivo e pertencer ao intervalo 0 e 1.")
+            raise ValueError("Error: the value must be positive and in the range [0,1].")
     
     def add_interest_rate(self):
         if('_interest_rate' not in BankAccount.__dict__):
@@ -114,3 +114,4 @@ class BankAccount:
         conf_number = type_transaction + str(self.account_number) + \
         str(self.current_dt_utc()) + str(self.get_control_number()) 
         return conf_number
+        

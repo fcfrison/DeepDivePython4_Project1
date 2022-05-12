@@ -1,0 +1,6 @@
+USERNAME=user
+PASSWORD=password
+HOST=URL_ORACLE
+PORT=1521
+SERVICE=service_name
+INSTANT_CLIENT_DIR=C:/.../instantclient_xx_x
